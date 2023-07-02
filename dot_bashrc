@@ -1,0 +1,21 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+alias x=startx
+
+alias rb='/usr/bin/sudo /usr/bin/reboot'
+alias po='/usr/bin/sudo /usr/bin/poweroff'
+
+alias rm=/usr/bin/rip
+alias rm!=/usr/bin/rm
+
+. "$HOME/.cargo/env"
+
+#eval "$(pyenv init -)"
