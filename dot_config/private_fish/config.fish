@@ -5,6 +5,7 @@ end
 eval "$(pyenv init -)"
 
 set -x SHELL "/usr/bin/fish" 
+set -x EDITOR "/usr/bin/nvim"
 
 alias ls=lsd
 

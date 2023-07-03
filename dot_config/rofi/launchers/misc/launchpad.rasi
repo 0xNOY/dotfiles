@@ -8,20 +8,20 @@
  */
 
 configuration {
-	font:							"Noto Sans Bold 10";
+	font:							"Inter 12";
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
     drun-display-format:            "{name}";
-    disable-history:                true;
+    disable-history:                false;
 	sidebar-mode: 					false;
 }
 
 * {
-    background:                     #000000cc;
+    background:                     #00000070;
     background-alt:              	#00000000;
     background-bar:                 #f2f2f215;
-    foreground:                     #f2f2f2EE;
+    foreground:                     #f2f2f2ee;
     accent:			            	#ffffff66;
 }
 
@@ -116,7 +116,7 @@ element-text {
 element selected {
     background-color:               @background-bar;
     text-color:                     @foreground;
-	border:							0% 0% 0% 0%;
-    border-radius:                  12px;
+	border:							1px;
+    border-radius:                  8px;
     border-color:                  	@accent;
 }
