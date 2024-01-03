@@ -37,7 +37,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 feh --bg-scale ~/Pictures/wallpapers/wallpaper2_1920x1200.png &
-#feh --bg-scale ~/Pictures/wallpapers/wallpaper3.jpg &
+
 xset m 8/10 4 &
 setxkbmap -model jp106 -layout jp &&
 	fcitx5 &
