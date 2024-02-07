@@ -1,0 +1,16 @@
+import = [
+    "/home/noy/.config/alacritty/alacritty-theme/themes/dark_pastels.toml",
+]
+
+[bell.command]
+args = ["-q", "-v", "0.4", "~/Audio/pop-alert.wav"]
+program = "play"
+
+[font]
+size = 6.6
+
+[font.normal]
+family = "monospace"
+
+[window]
+opacity = 0.6
