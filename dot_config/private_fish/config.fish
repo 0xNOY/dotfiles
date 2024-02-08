@@ -20,3 +20,5 @@ alias vim=nvim
 
 alias rm=/usr/bin/rip
 alias rm!=/usr/bin/rm
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/noy/.ghcup/bin $PATH # ghcup-env
