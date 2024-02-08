@@ -36,6 +36,8 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
+/usr/lib/bluetooth/obexd &
+
 feh --bg-scale ~/Pictures/wallpapers/wallpaper2_1920x1200.png &
 
 xset m 8/10 4 &
