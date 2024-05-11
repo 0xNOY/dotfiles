@@ -10,3 +10,5 @@ export PATH=$HOME/.dotnet/tools:$PATH
 
 export LESS="$LESS -Q -R"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.boost_1_80_0/lib
+
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

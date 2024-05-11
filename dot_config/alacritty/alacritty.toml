@@ -1,6 +1,4 @@
-import = [
-    "/home/noy/.config/alacritty/alacritty-theme/themes/dark_pastels.toml",
-]
+import = ["/home/noy/.config/alacritty/alacritty-theme/themes/afterglow.toml"]
 
 [bell.command]
 args = ["-q", "-v", "0.4", "~/Audio/pop-alert.wav"]
