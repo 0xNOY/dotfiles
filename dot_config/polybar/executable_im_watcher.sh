@@ -28,10 +28,6 @@ _im2display() {
 
 im2display() {
     im=$1
-    if [[ -z $im ]]; then
-        return
-    fi
-
     if [[ -z ${cache_im2display[$im]} ]]; then
         cache_im2display[$im]=$(_im2display $im)
     fi
@@ -41,8 +37,14 @@ im2display() {
 watch_im() {
     while true; do
         im=$(get_current_im)
+        if [[ -z $im ]]; then
+            sleep $INTERVAL
+            continue
+        fi
+
         display=$(im2display $im)
         echo $display
+
         sleep $INTERVAL
     done
 }
