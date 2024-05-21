@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERVAL=1
+INTERVAL=0.5
 
 declare -A cache_im2display
 
@@ -28,6 +28,10 @@ _im2display() {
 
 im2display() {
     im=$1
+    if [[ -z $im ]]; then
+        return
+    fi
+
     if [[ -z ${cache_im2display[$im]} ]]; then
         cache_im2display[$im]=$(_im2display $im)
     fi
