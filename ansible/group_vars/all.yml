@@ -37,6 +37,9 @@ wayland_packages:
   - hyprpaper
   - mako
   - network-manager-applet
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
   - papirus-icon-theme
   - pavucontrol
   - pipewire
@@ -50,6 +53,8 @@ wayland_packages:
   - rofi
   - slurp
   - ttf-0xproto-nerd
+  - ttf-roboto
+  - ttf-roboto-mono
   - uwsm
   - waybar
   - wiremix
