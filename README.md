@@ -91,10 +91,13 @@ Waybar、Mako、Hypridle、polkit agentは
 `graphical-session.target`配下のsystemd user serviceとして起動します。
 Fcitx5はUWSMが処理するXDG autostartから起動します。
 
-HyprpaperとHyprlockは、リポジトリ同梱の
-`~/.local/share/backgrounds/hyprland-theme.png`を表示します。この画像は
-OpenAIの画像生成ツールで新規生成したもので、生成時に第三者画像を入力していません。
-出典調査と生成条件は`docs/WALLPAPER.md`に記録しています。
+HyprpaperとHyprlockは、ローカルに従来の
+`~/Pictures/wallpapers/wallpaper2_1920x1200.png`があれば優先して表示します。
+存在しない環境では、リポジトリ同梱の
+`~/.local/share/backgrounds/hyprland-theme.png`へ自動的にフォールバックします。
+選択結果は`~/.local/share/backgrounds/hyprland-selected.png`というsymlinkです。
+従来画像はライセンスが確認できないためGitには含めません。生成画像の出典調査と
+生成条件は`docs/WALLPAPER.md`に記録しています。
 
 Ghostty、Waybar、Rofi、Mako、Hyprlock、FontconfigとFish promptもchezmoiで
 管理します。Fish pluginは`chezmoi apply`時にFisherで同期されます。

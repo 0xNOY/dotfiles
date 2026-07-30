@@ -14,6 +14,7 @@ The former `wallpaper2_1920x1200.png` is intentionally not committed.
   attribution requirements and personal-use-only restrictions.
 
 There is therefore no sufficient basis to redistribute that file.
+When it is already present locally, it remains the preferred wallpaper.
 
 ## Repository wallpaper
 
@@ -38,3 +39,8 @@ Generation prompt:
 > light, and a near-black, forest-green, desaturated olive palette. Do not
 > copy a specific photograph. Include no people, animals, buildings, text,
 > logos, signatures, borders, or watermarks.
+
+At each `chezmoi apply`, `run_before_select-wallpaper.sh` updates
+`~/.local/share/backgrounds/hyprland-selected.png`. It points to the previous
+local wallpaper when available, or to the generated repository wallpaper
+otherwise.
