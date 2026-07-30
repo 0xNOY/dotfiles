@@ -2,7 +2,7 @@
 size = 12
 
 [font.normal]
-family = "0xProto Nerd Font"
+family = "monospace"
 
 [window]
 opacity = 0.5
