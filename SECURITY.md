@@ -11,7 +11,12 @@ The repository intentionally excludes:
 - browser and application profiles
 - Fcitx dictionaries and generated caches
 - machine journals, histories, and package caches
-- wallpapers and other assets without a clear redistribution license
+- third-party wallpapers and other assets without a clear redistribution
+  license
+
+The bundled wallpaper was newly created with OpenAI's image generation tool.
+No third-party image was supplied as an input. Its provenance and generation
+prompt are recorded in `docs/WALLPAPER.md`.
 
 Fcitx configuration files are deployed with private permissions, even though
 the committed values are not secret.
@@ -29,6 +34,11 @@ before running them:
 Membership in the `docker` group is effectively root-equivalent. AUR
 PKGBUILDs are third-party code and are not made trustworthy by this
 repository.
+
+The experimental `0xNOY/letsnote-wheelpad` source is pinned to a full commit
+ID and a SHA-256-verified source archive. Cargo builds with `--locked`. The
+daemon is not started unless the user creates the documented opt-in marker,
+because it exclusively grabs the physical touchpad.
 
 ## Reporting
 

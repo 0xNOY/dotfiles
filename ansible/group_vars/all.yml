@@ -7,6 +7,7 @@ core_packages:
   - bottom
   - chezmoi
   - fd
+  - fisher
   - fish
   - fzf
   - git
@@ -51,6 +52,7 @@ wayland_packages:
   - polkit-gnome
   - qt5-wayland
   - rofi
+  - rust
   - slurp
   - ttf-0xproto-nerd
   - ttf-roboto
@@ -143,7 +145,6 @@ aur_packages:
   - flashprint
   - google-chrome
   - gtrash-bin
-  - letsnote-wheelpad-git
   - marp-cli-bin
   - mujoco-bin
   - onlyoffice-bin
@@ -160,6 +161,7 @@ aur_packages:
 legacy_packages:
   - arandr
   - betterlockscreen
+  - letsnote-wheelpad-git
   - notify-osd
   - picom
   - polybar
@@ -168,6 +170,16 @@ legacy_packages:
   - xorg-xclipboard
   - xorg-xinput
   - xorg-xkill
+
+legacy_system_units:
+  - betterlockscreen@noy.service
+
+letsnote_wheelpad_version: 842cff1b989d88a9b5275899f5bbc182816f9491
+letsnote_wheelpad_archive_url: >-
+  https://github.com/0xNOY/letsnote-wheelpad/archive/{{
+  letsnote_wheelpad_version }}.tar.gz
+letsnote_wheelpad_archive_sha256: >-
+  d8c8932d72cd4e7c4d3758294fc346a35d9c520549708461e52bda1262e656f8
 
 enabled_system_units:
   - NetworkManager.service

@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+# chezmoi source hash: {{ include "dot_config/private_fish/fish_plugins" | sha256sum }}
+
+if not type -q fisher
+    echo "fisher is required to install fish plugins" >&2
+    exit 1
+end
+
+fisher update

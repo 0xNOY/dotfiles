@@ -1,0 +1,41 @@
+# Lightweight Hyprland profile, matching the previous Rio setup.
+gtk-single-instance = true
+window-decoration = none
+window-show-tab-bar = auto
+confirm-close-surface = false
+
+font-family = HackGen Console NF
+font-size = 12
+
+window-padding-x = 4
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
+
+background-opacity = 0.5
+background-opacity-cells = false
+alpha-blending = native
+
+background = #2c2c2c
+foreground = #d6d6d6
+cursor-color = #d9d9d9
+
+palette = 0=#1c1c1c
+palette = 1=#bc5653
+palette = 2=#909d63
+palette = 3=#ebc17a
+palette = 4=#7eaac7
+palette = 5=#aa6292
+palette = 6=#86d3ce
+palette = 7=#cacaca
+palette = 8=#636363
+palette = 9=#bc5653
+palette = 10=#909d63
+palette = 11=#ebc17a
+palette = 12=#7eaac7
+palette = 13=#aa6292
+palette = 14=#86d3ce
+palette = 15=#f7f7f7
+
+# Preserve the Shift+Enter behavior used by Rio and Alacritty.
+keybind = shift+enter=text:\x1b\r

@@ -34,6 +34,112 @@
       when: letsnote_enabled | bool
       notify: Reload udev rules
 
+    - name: Load uinput at boot for the Let's Note Wheel Pad
+      become: true
+      ansible.builtin.copy:
+        src: files/letsnote-wheelpad.conf
+        dest: /etc/modules-load.d/letsnote-wheelpad.conf
+        owner: root
+        group: root
+        mode: "0644"
+      when: letsnote_enabled | bool
+
+    - name: Create the Wheel Pad build directory
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.cache/dotfiles-build"
+        state: directory
+        mode: "0755"
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
+    - name: Download the pinned 0xNOY Wheel Pad source
+      ansible.builtin.get_url:
+        url: "{{ letsnote_wheelpad_archive_url }}"
+        dest: >-
+          {{
+            ansible_env.HOME
+            + '/.cache/dotfiles-build/letsnote-wheelpad-'
+            + letsnote_wheelpad_version
+            + '.tar.gz'
+          }}
+        checksum: "sha256:{{ letsnote_wheelpad_archive_sha256 }}"
+        mode: "0644"
+      register: letsnote_wheelpad_archive
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
+    - name: Extract the pinned 0xNOY Wheel Pad source
+      ansible.builtin.unarchive:
+        src: >-
+          {{
+            ansible_env.HOME
+            + '/.cache/dotfiles-build/letsnote-wheelpad-'
+            + letsnote_wheelpad_version
+            + '.tar.gz'
+          }}
+        dest: "{{ ansible_env.HOME }}/.cache/dotfiles-build"
+        remote_src: true
+        creates: >-
+          {{
+            ansible_env.HOME
+            + '/.cache/dotfiles-build/letsnote-wheelpad-'
+            + letsnote_wheelpad_version
+            + '/Cargo.toml'
+          }}
+      register: letsnote_wheelpad_source
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
+    - name: Inspect the installed 0xNOY Wheel Pad binary
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.local/bin/letsnote-wheelpad"
+      register: letsnote_wheelpad_binary
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
+    - name: Build the pinned 0xNOY Wheel Pad binary
+      ansible.builtin.command:
+        argv:
+          - cargo
+          - build
+          - --release
+          - --locked
+        chdir: >-
+          {{
+            ansible_env.HOME
+            + '/.cache/dotfiles-build/letsnote-wheelpad-'
+            + letsnote_wheelpad_version
+          }}
+      register: letsnote_wheelpad_build
+      changed_when: >-
+        letsnote_wheelpad_archive.changed
+        or letsnote_wheelpad_source.changed
+        or not letsnote_wheelpad_binary.stat.exists
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
+    - name: Install the 0xNOY Wheel Pad binary for the login user
+      ansible.builtin.copy:
+        src: >-
+          {{
+            ansible_env.HOME
+            + '/.cache/dotfiles-build/letsnote-wheelpad-'
+            + letsnote_wheelpad_version
+            + '/'
+            + 'target/release/letsnote-wheelpad'
+          }}
+        dest: "{{ ansible_env.HOME }}/.local/bin/letsnote-wheelpad"
+        remote_src: true
+        mode: "0755"
+      when:
+        - letsnote_enabled | bool
+        - not ansible_check_mode
+
     - name: Enable system services
       become: true
       ansible.builtin.systemd_service:
@@ -87,6 +193,33 @@
       tags:
         - never
         - privileged
+
+    - name: Check for retired X11 system services
+      become: true
+      ansible.builtin.command:
+        argv:
+          - systemctl
+          - is-enabled
+          - "{{ item }}"
+      loop: "{{ legacy_system_units }}"
+      register: legacy_unit_status
+      changed_when: false
+      failed_when: false
+      tags:
+        - never
+        - cleanup
+
+    - name: Disable retired X11 system services
+      become: true
+      ansible.builtin.systemd_service:
+        name: "{{ item.item }}"
+        enabled: false
+        state: stopped
+      loop: "{{ legacy_unit_status.results }}"
+      when: item.rc != 4
+      tags:
+        - never
+        - cleanup
 
     - name: Remove the retired X11 desktop stack
       become: true

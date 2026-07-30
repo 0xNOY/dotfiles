@@ -21,7 +21,7 @@ jobs:
       - name: Install validation tools
         run: >-
           pacman -Syu --noconfirm --needed
-          ansible ansible-lint chezmoi gitleaks jq lua shellcheck yamllint
+          ansible ansible-lint chezmoi fish gitleaks jq lua shellcheck yamllint
 
       - name: Validate Ansible
         working-directory: ansible
@@ -34,7 +34,9 @@ jobs:
       - name: Validate shell and Lua
         run: |
           shellcheck bootstrap
+          shellcheck run_once_before_remove-retired-wayland-files.sh
           shellcheck dot_config/rofi/launchers/misc/executable_launcher.sh
+          fish -n run_onchange_after_install-fish-plugins.fish.tmpl
           luac -p dot_config/hypr/hyprland.lua
           jq empty dot_config/waybar/config.jsonc
 

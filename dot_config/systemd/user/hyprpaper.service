@@ -3,7 +3,7 @@ Description=Hyprland wallpaper daemon
 PartOf=graphical-session.target
 After=graphical-session.target
 Requisite=graphical-session.target
-ConditionPathExists=%h/Pictures/wallpapers/wallpaper2_1920x1200.png
+ConditionPathExists=%h/.local/share/backgrounds/hyprland-theme.png
 
 [Service]
 ExecStart=/usr/bin/hyprpaper
