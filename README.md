@@ -72,6 +72,10 @@ Waybar、Mako、Hypridle、polkit agentは
 `graphical-session.target`配下のsystemd user serviceとして起動します。
 Fcitx5はUWSMが処理するXDG autostartから起動します。
 
+Hyprpaperは
+`~/Pictures/wallpapers/wallpaper2_1920x1200.png`が存在するときだけ起動します。
+壁紙画像自体は再配布ライセンスが不明なため、この公開リポジトリには含めません。
+
 設定変更後は次を確認します。
 
 ```bash

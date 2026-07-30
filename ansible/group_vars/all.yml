@@ -34,6 +34,7 @@ wayland_packages:
   - hyprland
   - hyprland-guiutils
   - hyprlock
+  - hyprpaper
   - mako
   - network-manager-applet
   - papirus-icon-theme
