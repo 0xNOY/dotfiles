@@ -1,14 +1,6 @@
-#
-# ~/.bash_profile
-#
+[[ -r "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
+[[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-. "$HOME/.cargo/env"
-
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.dotnet/tools:$PATH
-
-export LESS="$LESS -Q -R"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.boost_1_80_0/lib
-
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.dotnet/tools:$PATH"
+export LESS="${LESS:-} -Q -R"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/ssh-agent.socket"

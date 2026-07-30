@@ -1,21 +1,18 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
+# Return early for non-interactive shells.
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-alias x=startx
+# Start the graphical session from a TTY.
+alias x='uwsm start hyprland.desktop'
+alias xstart='uwsm start hyprland.desktop'
 
 alias rb='/usr/bin/sudo /usr/bin/reboot'
 alias po='/usr/bin/sudo /usr/bin/poweroff'
 
-alias rm=/usr/bin/rip
-alias rm!=/usr/bin/rm
+command -v lsd >/dev/null && alias ls=lsd
+command -v nvim >/dev/null && alias vi=nvim vim=nvim
+command -v gtrash >/dev/null && alias rm='gtrash put'
 
-. "$HOME/.cargo/env"
-
-#eval "$(pyenv init -)"
+[[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

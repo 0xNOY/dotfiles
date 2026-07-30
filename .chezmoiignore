@@ -1,0 +1,8 @@
+README.md
+SECURITY.md
+ansible/**
+bootstrap
+docs/**
+.github/**
+.gitignore
+.yamllint

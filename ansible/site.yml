@@ -1,0 +1,108 @@
+---
+- name: Configure the Arch Linux workstation
+  hosts: localhost
+  gather_facts: true
+
+  pre_tasks:
+    - name: Require Arch Linux
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.distribution == "Archlinux"
+        fail_msg: This playbook supports Arch Linux only.
+
+  tasks:
+    - name: Install official repository packages
+      become: true
+      community.general.pacman:
+        name: >-
+          {{
+            core_packages
+            + wayland_packages
+            + workstation_packages
+            + hardware_packages
+          }}
+        state: present
+
+    - name: Install the Let's Note udev rule
+      become: true
+      ansible.builtin.copy:
+        src: files/71-letsnote-wheelpad-cfsz6.rules
+        dest: /etc/udev/rules.d/71-letsnote-wheelpad-cfsz6.rules
+        owner: root
+        group: root
+        mode: "0644"
+      when: letsnote_enabled | bool
+      notify: Reload udev rules
+
+    - name: Enable system services
+      become: true
+      ansible.builtin.systemd_service:
+        name: "{{ item }}"
+        enabled: true
+      loop: "{{ enabled_system_units }}"
+
+    - name: Check for the AUR helper
+      ansible.builtin.command:
+        argv:
+          - yay
+          - --version
+      register: yay_check
+      changed_when: false
+      failed_when: false
+      tags:
+        - never
+        - aur
+
+    - name: Require a manually reviewed AUR helper
+      ansible.builtin.assert:
+        that:
+          - yay_check.rc == 0
+        fail_msg: >-
+          Install yay after reviewing its PKGBUILD, then rerun with
+          `--tags aur`.
+      tags:
+        - never
+        - aur
+
+    - name: Install reviewed AUR packages
+      ansible.builtin.command:
+        argv: "{{ ['yay', '-S', '--needed', '--noconfirm'] + aur_packages }}"
+      register: aur_install
+      changed_when: >-
+        'there is nothing to do' not in
+        (aur_install.stdout | lower)
+      when: not ansible_check_mode
+      tags:
+        - never
+        - aur
+
+    - name: Add the login user to privileged workstation groups
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_user_id }}"
+        groups:
+          - adbusers
+          - docker
+        append: true
+      tags:
+        - never
+        - privileged
+
+    - name: Remove the retired X11 desktop stack
+      become: true
+      community.general.pacman:
+        name: "{{ legacy_packages }}"
+        state: absent
+      tags:
+        - never
+        - cleanup
+
+  handlers:
+    - name: Reload udev rules
+      become: true
+      ansible.builtin.command:
+        argv:
+          - udevadm
+          - control
+          - --reload-rules
+      changed_when: true

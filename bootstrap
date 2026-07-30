@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+if [[ ! -r /etc/arch-release ]]; then
+    printf 'bootstrap: Arch Linux is required\n' >&2
+    exit 1
+fi
+
+sudo pacman -Syu --needed --noconfirm ansible chezmoi git
+ansible-galaxy collection install \
+    --requirements-file "$repo_dir/ansible/requirements.yml"
+(
+    cd "$repo_dir/ansible"
+    ansible-playbook site.yml
+)
+chezmoi --source "$repo_dir" apply

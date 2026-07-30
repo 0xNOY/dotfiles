@@ -1,0 +1,53 @@
+---
+name: Validate
+
+"on":
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container:
+      image: >-
+        archlinux:base-devel@sha256:40d14ac9db5af04f695eacd82a53181ad685fecc2534a66e05a51182a077cbd5
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Install validation tools
+        run: >-
+          pacman -Syu --noconfirm --needed
+          ansible ansible-lint chezmoi gitleaks jq lua shellcheck yamllint
+
+      - name: Validate Ansible
+        working-directory: ansible
+        run: |
+          ansible-playbook --syntax-check site.yml
+          ansible-lint site.yml
+          yamllint -c ../.yamllint .
+          yamllint -c ../.yamllint ../.github/workflows/validate.yml
+
+      - name: Validate shell and Lua
+        run: |
+          shellcheck bootstrap
+          shellcheck dot_config/rofi/launchers/misc/executable_launcher.sh
+          luac -p dot_config/hypr/hyprland.lua
+          jq empty dot_config/waybar/config.jsonc
+
+      - name: Render chezmoi state
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          chezmoi \
+            --source "$GITHUB_WORKSPACE" \
+            --destination "$RUNNER_TEMP/home" \
+            apply --dry-run
+
+      - name: Scan Git history for secrets
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          gitleaks dir --redact --no-banner .
+          gitleaks git --redact --no-banner

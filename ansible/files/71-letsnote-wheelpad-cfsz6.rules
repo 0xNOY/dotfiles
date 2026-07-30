@@ -1,0 +1,2 @@
+# CF-SZ6 exposes its circular Wheel Pad under this generic PS/2 name.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="SynPS/2 Synaptics TouchPad", MODE="0660", GROUP="input", TAG+="uaccess"
