@@ -45,10 +45,12 @@
   },
   "network": {
     "interval": 5,
-    "format-wifi": "󰖩  {essid}",
+    "format-wifi": "{icon}  {essid}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "󰈀  {ipaddr}",
     "format-disconnected": "󰖪  Disconnected",
-    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip-format-wifi": "{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}% ({signaldBm} dBm)",
+    "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
     "on-click": "/usr/bin/ghostty --gtk-single-instance=false --class=com.noy.nmtui -e nmtui"
   },
   "backlight": {
