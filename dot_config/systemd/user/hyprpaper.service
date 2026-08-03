@@ -1,0 +1,13 @@
+[Unit]
+Description=Hyprland wallpaper daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+ConditionPathExists=%h/.local/share/backgrounds/hyprland-selected.png
+
+[Service]
+ExecStart=/usr/bin/hyprpaper
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

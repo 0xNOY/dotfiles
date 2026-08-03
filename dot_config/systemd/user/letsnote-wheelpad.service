@@ -1,0 +1,17 @@
+[Unit]
+Description=0xNOY Let's Note WheelPad development build
+Documentation=https://github.com/0xNOY/letsnote-wheelpad
+After=graphical-session.target
+PartOf=graphical-session.target
+ConditionPathExists=%h/.config/letsnote-wheelpad/enabled
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/letsnote-wheelpad
+Restart=on-failure
+RestartSec=2s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical-session.target

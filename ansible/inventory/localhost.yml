@@ -1,0 +1,11 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+      letsnote_enabled: true
+      hardware_packages:
+        - intel-ucode
+        - linux-firmware
+        - linux-lts
+        - linux-zen

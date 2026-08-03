@@ -1,0 +1,15 @@
+# Panasonic Let's Note CF-SZ6 (SYN0502)
+device_name_regex = "SynPS/2 Synaptics TouchPad"
+
+[scroll]
+enable = true
+reverse_vertical = false
+horizontal_enable = false
+sensitivity = 0
+detect_area_width = 0
+detect_area_radius = 1965.0
+coordinate_y_scale = 1.33236
+minimum_rotation_radius = 250.0
+
+[log]
+level = "info"

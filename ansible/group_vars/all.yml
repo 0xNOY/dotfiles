@@ -1,0 +1,194 @@
+---
+core_packages:
+  - ansible
+  - base
+  - base-devel
+  - bat
+  - bottom
+  - chezmoi
+  - fd
+  - fisher
+  - fish
+  - fzf
+  - git
+  - git-lfs
+  - github-cli
+  - ghostty
+  - lsd
+  - neovim
+  - ripgrep
+  - tmux
+  - unzip
+  - uv
+  - wget
+
+wayland_packages:
+  - alacritty
+  - brightnessctl
+  - fcitx5
+  - fcitx5-configtool
+  - fcitx5-gtk
+  - fcitx5-mozc
+  - fcitx5-qt
+  - grim
+  - hypridle
+  - hyprland
+  - hyprland-guiutils
+  - hyprlock
+  - hyprpaper
+  - mako
+  - network-manager-applet
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
+  - papirus-icon-theme
+  - pavucontrol
+  - pipewire
+  - pipewire-alsa
+  - pipewire-audio
+  - pipewire-jack
+  - pipewire-pulse
+  - playerctl
+  - polkit-gnome
+  - qt5-wayland
+  - rofi
+  - rust
+  - slurp
+  - ttf-0xproto-nerd
+  - ttf-roboto
+  - ttf-roboto-mono
+  - uwsm
+  - waybar
+  - wiremix
+  - wireplumber
+  - wl-clipboard
+  - xdg-desktop-portal
+  - xdg-desktop-portal-gtk
+  - xdg-desktop-portal-hyprland
+
+workstation_packages:
+  - alsa-tools
+  - alsa-utils
+  - aws-cli
+  - bind
+  - blueman
+  - bluez
+  - bluez-obex
+  - cups
+  - cups-pdf
+  - dconf-editor
+  - discord
+  - docker
+  - docker-compose
+  - drawio-desktop
+  - fastfetch
+  - firefox
+  - firefox-i18n-ja
+  - flatpak
+  - fwupd
+  - gdu
+  - gimp
+  - gocryptfs
+  - handlr-regex
+  - inkscape
+  - iotop
+  - jupyter-nbconvert
+  - kooha
+  - libreoffice-still-ja
+  - monolith
+  - mpv
+  - nautilus
+  - ncdu
+  - networkmanager
+  - networkmanager-openvpn
+  - nmap
+  - ntfs-3g
+  - obs-studio
+  - obsidian
+  - okular
+  - 7zip
+  - patchelf
+  - perl-image-exiftool
+  - pixi
+  - reflector
+  - rio
+  - rpi-imager
+  - scrcpy
+  - shotcut
+  - simple-scan
+  - squashfs-tools
+  - sshpass
+  - sushi
+  - tailscale
+  - tcpdump
+  - thunderbird
+  - thunderbird-i18n-ja
+  - tlp
+  - traceroute
+  - ufw
+  - veracrypt
+  - vlc
+  - wireguard-tools
+  - woff2-font-awesome
+
+# AUR packages execute third-party PKGBUILDs. They are deliberately installed
+# only with the explicit `aur` tag after manual review.
+aur_packages:
+  - antigravity-cli
+  - antigravity-ide
+  - brave-bin
+  - capt-src
+  - cheese
+  - cnijfilter2
+  - cursor-bin
+  - davinci-resolve-studio
+  - flashprint
+  - google-chrome
+  - gtrash-bin
+  - marp-cli-bin
+  - mujoco-bin
+  - onlyoffice-bin
+  - orca-slicer-bin
+  - pup
+  - r-quick-share-bin
+  - slack-desktop
+  - spotify
+  - timg
+  - ttf-hackgen
+  - ttf-mplus
+  - visual-studio-code-bin
+
+legacy_packages:
+  - arandr
+  - betterlockscreen
+  - letsnote-wheelpad-git
+  - notify-osd
+  - picom
+  - polybar
+  - xf86-input-synaptics
+  - xorg-server
+  - xorg-xclipboard
+  - xorg-xinput
+  - xorg-xkill
+
+legacy_system_units:
+  - betterlockscreen@noy.service
+
+letsnote_wheelpad_version: 842cff1b989d88a9b5275899f5bbc182816f9491
+letsnote_wheelpad_archive_url: >-
+  https://github.com/0xNOY/letsnote-wheelpad/archive/{{
+  letsnote_wheelpad_version }}.tar.gz
+letsnote_wheelpad_archive_sha256: >-
+  d8c8932d72cd4e7c4d3758294fc346a35d9c520549708461e52bda1262e656f8
+
+enabled_system_units:
+  - NetworkManager.service
+  - avahi-daemon.service
+  - bluetooth.service
+  - cups.service
+  - docker.service
+  - fstrim.timer
+  - reflector.timer
+  - tailscaled.service
+  - tlp.service
+  - ufw.service

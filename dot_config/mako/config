@@ -1,0 +1,16 @@
+font=M+ 1p 11
+background-color=#282828ee
+text-color=#ebdbb2ff
+border-color=#928374ff
+border-size=1
+border-radius=0
+default-timeout=5000
+width=360
+height=120
+margin=12
+padding=12
+anchor=top-right
+
+[urgency=high]
+border-color=#fe8019ff
+default-timeout=0
