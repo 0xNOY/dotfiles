@@ -1,7 +1,7 @@
 configuration {
     font: "Roboto 13";
     show-icons: true;
-    icon-theme: "Papirus";
+    icon-theme: "MacTahoe-dark";
     display-drun: "  ";
     drun-display-format: "{name}";
     disable-history: false;

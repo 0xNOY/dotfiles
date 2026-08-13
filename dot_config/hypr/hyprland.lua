@@ -33,9 +33,9 @@ hl.config({
         shadow = { enabled = false },
         blur = {
             enabled = true,
-            size = 6,
+            size = 8,
             passes = 2,
-            vibrancy = 0.5,
+            vibrancy = 0.65,
         },
     },
     animations = {
@@ -134,7 +134,8 @@ hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + SHIFT + S",
-    hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy --type image/png]]))
+    hl.dsp.exec_cmd(home .. "/.local/bin/screenshot"))
+hl.bind("Print", hl.dsp.exec_cmd(home .. "/.local/bin/screenshot"))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. " + SHIFT + R",
     hl.dsp.exec_cmd(
@@ -204,6 +205,12 @@ hl.bind("XF86AudioLowerVolume",
     { locked = true, repeating = true })
 hl.bind("XF86AudioMute",
     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+    { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"),
+    { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"),
+    { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),
     { locked = true })
 hl.bind(mainMod .. " + SHIFT + comma",
     hl.dsp.exec_cmd("playerctl previous"))

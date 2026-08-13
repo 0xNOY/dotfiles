@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -eu
+
+screenshots=${XDG_SCREENSHOTS_DIR:-${XDG_PICTURES_DIR:-"$HOME/Pictures"}/Screenshots}
+mkdir -p "$screenshots"
+
+HQS_DIR=$screenshots exec quickshell -c hyprquickshot -n
