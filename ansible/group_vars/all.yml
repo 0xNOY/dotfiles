@@ -53,6 +53,7 @@ wayland_packages:
   - qt5-wayland
   - rofi
   - rust
+  - sassc
   - slurp
   - ttf-0xproto-nerd
   - ttf-roboto

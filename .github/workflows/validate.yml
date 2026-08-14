@@ -36,6 +36,8 @@ jobs:
           shellcheck bootstrap
           shellcheck run_before_select-wallpaper.sh
           shellcheck run_once_before_remove-retired-wayland-files.sh
+          shellcheck run_onchange_before_install-mactahoe-gtk-theme.sh
+          shellcheck run_onchange_after_configure-mactahoe-gtk-theme.sh
           shellcheck dot_config/rofi/launchers/misc/executable_launcher.sh
           fish -n run_onchange_after_install-fish-plugins.fish.tmpl
           luac -p dot_config/hypr/hyprland.lua
