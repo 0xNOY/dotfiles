@@ -13,7 +13,9 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 6px;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
     background-color: #928374;
     color: #ebdbb2;
 }
