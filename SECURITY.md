@@ -1,47 +1,32 @@
-# Security policy
+# セキュリティポリシー
 
-## Public repository boundary
+## 管理対象外
 
-The repository intentionally excludes:
+公開リポジトリのため、次の情報は管理しません。
 
-- private and public SSH/GPG keys
-- tokens, passwords, cookies, and cloud credentials
-- NetworkManager connection profiles
-- Tailscale state
-- browser and application profiles
-- Fcitx dictionaries and generated caches
-- machine journals, histories, and package caches
-- third-party wallpapers and other assets without a clear redistribution
-  license
+- SSH/GPG key、token、password、cookie、cloud credential
+- NetworkManagerの接続profile、Tailscaleのstate
+- browserやapplicationのprofile
+- Fcitxの辞書、cache、journal、履歴
+- 再配布条件を確認できない第三者のasset
 
-The bundled wallpaper was newly created with OpenAI's image generation tool.
-No third-party image was supplied as an input. Its provenance and generation
-prompt are recorded in `docs/WALLPAPER.md`.
+同梱壁紙の生成条件は[docs/WALLPAPER.md](docs/WALLPAPER.md)に記録しています。
 
-Fcitx configuration files are deployed with private permissions, even though
-the committed values are not secret.
+## 明示的な操作
 
-## Privileged operations
+次のAnsible tagは既定で実行されません。
 
-Ansible tasks that execute AUR PKGBUILDs, add the login user to privileged
-groups, or remove packages require an explicit tag. Review these operations
-before running them:
+- `aur`: 第三者のPKGBUILDを実行
+- `privileged`: ユーザーを`docker`と`adbusers`へ追加
+- `cleanup`: 旧X11 packageとserviceを削除
 
-- `--tags aur`
-- `--tags privileged`
-- `--tags cleanup`
+実行前に対象taskを確認してください。`docker` groupはroot相当の権限を持ちます。
 
-Membership in the `docker` group is effectively root-equivalent. AUR
-PKGBUILDs are third-party code and are not made trustworthy by this
-repository.
+`0xNOY/letsnote-wheelpad`はcommit IDとSHA-256 checksumへ固定し、Cargoの
+`--locked`でbuildします。物理touchpadを排他grabするため、明示的に有効化するまで
+起動しません。
 
-The experimental `0xNOY/letsnote-wheelpad` source is pinned to a full commit
-ID and a SHA-256-verified source archive. Cargo builds with `--locked`. The
-daemon is not started unless the user creates the documented opt-in marker,
-because it exclusively grabs the physical touchpad.
+## 報告
 
-## Reporting
-
-Do not open a public issue containing a credential or other sensitive value.
-Revoke the affected credential first, then use a private contact method listed
-on the repository owner's GitHub profile.
+秘密情報をGitHub Issueへ投稿しないでください。漏えいしたcredentialを失効させ、
+リポジトリ所有者のGitHub profileに記載された非公開の連絡手段を使用してください。
