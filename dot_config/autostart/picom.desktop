@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Picom
+Exec=picom
+NoDisplay=true
+Hidden=true
