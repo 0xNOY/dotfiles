@@ -1,37 +1,20 @@
-# Wallpaper provenance
+# 壁紙の出典
 
-## Previous local wallpaper
+## 従来の画像
 
-The former `wallpaper2_1920x1200.png` is intentionally not committed.
+`wallpaper2_1920x1200.png`は出典と再配布条件を確認できないため、リポジトリへ
+含めません。ローカルに存在する場合は優先して使用します。
 
-- SHA-256:
-  `b9b17c70b1ed390820797d8b9fbfcf48c855a3d3b76c1d93bb3e4c1bfc197343`
-- The PNG contains no author, copyright, source, title, or description
-  metadata.
-- Searches by filename and hash did not identify an authoritative original
-  source.
-- Visually similar wallpaper sites use inconsistent terms, including
-  attribution requirements and personal-use-only restrictions.
+SHA-256: `b9b17c70b1ed390820797d8b9fbfcf48c855a3d3b76c1d93bb3e4c1bfc197343`
 
-There is therefore no sufficient basis to redistribute that file.
-When it is already present locally, it remains the preferred wallpaper.
+## 同梱画像
 
-## Repository wallpaper
+`private_dot_local/private_share/backgrounds/hyprland-theme.png`は、2026-07-31に
+OpenAIの画像生成機能で入力画像を使わずに生成しました。生成後、1920×1200へcropと
+resizeを行い、metadataを削除しています。outputの権利は
+[OpenAI Terms of Use](https://openai.com/policies/terms-of-use/)を参照してください。
 
-`private_dot_local/private_share/backgrounds/hyprland-theme.png` was newly
-generated on
-2026-07-31 with OpenAI's built-in image generation tool. No image was
-provided to the generator as an input.
-
-OpenAI's Terms of Use state that, as between the user and OpenAI and to the
-extent permitted by applicable law, the user owns the output:
-
-<https://openai.com/policies/terms-of-use/>
-
-The generated output was center-cropped and resized to 1920 by 1200 pixels,
-then stripped of metadata with ImageMagick.
-
-Generation prompt:
+使用したprompt:
 
 > Create an entirely original 16:10 desktop wallpaper with dense,
 > overlapping palm fronds emerging from deep shadow. Use polished
@@ -40,7 +23,5 @@ Generation prompt:
 > copy a specific photograph. Include no people, animals, buildings, text,
 > logos, signatures, borders, or watermarks.
 
-At each `chezmoi apply`, `run_before_select-wallpaper.sh` updates
-`~/.local/share/backgrounds/hyprland-selected.png`. It points to the previous
-local wallpaper when available, or to the generated repository wallpaper
-otherwise.
+`run_before_select-wallpaper.sh`は`chezmoi apply`時に、従来画像または同梱画像を指す
+`~/.local/share/backgrounds/hyprland-selected.png`を作成します。
