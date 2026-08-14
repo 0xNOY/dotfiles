@@ -2,7 +2,7 @@
 
 Arch Linux、Hyprland、UWSMを使うworkstation設定です。
 
-![Hyprland Wayland desktop preview](docs/assets/wayland-preview.gif)
+![Hyprland Wayland desktop preview](docs/assets/wayland-preview.webp)
 
 - Ansible: 公式package、system service、udev rule
 - chezmoi: ユーザー設定、systemd user unit
