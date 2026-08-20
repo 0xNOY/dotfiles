@@ -1,5 +1,6 @@
 [[ -r "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -r "$HOME/.secrets" ]] && . "$HOME/.secrets"
 
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.dotnet/tools:$PATH"
 export LESS="${LESS:-} -Q -R"

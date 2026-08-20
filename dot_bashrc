@@ -16,3 +16,4 @@ command -v nvim >/dev/null && alias vi=nvim vim=nvim
 command -v gtrash >/dev/null && alias rm='gtrash put'
 
 [[ -r "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -r "$HOME/.secrets" ]] && . "$HOME/.secrets"

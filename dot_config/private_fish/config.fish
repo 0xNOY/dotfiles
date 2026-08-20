@@ -14,3 +14,5 @@ set -gx EDITOR /usr/bin/nvim
 
 command -q lsd; and alias ls=lsd
 command -q nvim; and alias vi=nvim vim=nvim
+
+test -r "$HOME/.secrets"; and source "$HOME/.secrets"
