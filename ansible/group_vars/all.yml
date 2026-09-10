@@ -51,6 +51,7 @@ wayland_packages:
   - playerctl
   - polkit-gnome
   - qt5-wayland
+  - quickshell
   - rofi
   - rust
   - sassc
