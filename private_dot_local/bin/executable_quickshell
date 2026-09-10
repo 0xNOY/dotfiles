@@ -2,9 +2,4 @@
 
 set -eu
 
-prefix=$HOME/.local/opt/quickshell-0.3.0-2/usr
-export LD_LIBRARY_PATH=$prefix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-export QML_IMPORT_PATH=$prefix/lib/qt6/qml${QML_IMPORT_PATH:+:$QML_IMPORT_PATH}
-export QT_PLUGIN_PATH=$prefix/lib/qt6/plugins${QT_PLUGIN_PATH:+:$QT_PLUGIN_PATH}
-
-exec "$prefix/bin/quickshell" "$@"
+exec /usr/bin/quickshell "$@"
