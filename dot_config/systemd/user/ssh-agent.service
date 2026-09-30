@@ -7,8 +7,9 @@ Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
 ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
 NoNewPrivileges=true
 PrivateTmp=true
-ProtectHome=true
+ProtectHome=read-only
 ProtectSystem=strict
+ReadWritePaths=%t
 RestrictAddressFamilies=AF_UNIX
 UMask=0077
 
